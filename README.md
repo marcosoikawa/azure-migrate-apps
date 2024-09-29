@@ -43,7 +43,10 @@ Configure IIS on VM
 ```bash
 az vm run-command invoke -g az-migrate-apps -n $vmname --command-id RunPowerShellScript --scripts "Install-WindowsFeature -name Web-Server -IncludeManagementTools"
 
+az vm open-port --port 80 --resource-group az-migrate-apps --name $vmname
+
 ```
+> :warning: It is not recommended open public IP on production environment without proper security layer (Web Application Firewall, DooS Protection). See: [Azure Web Application Firewall on Azure Front Door](https://learn.microsoft.com/en-us/azure/web-application-firewall/afds/afds-overview), [What is Azure DDoS Protection?](https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview)
 
 Create Azure Migrate VM
 ```bash
